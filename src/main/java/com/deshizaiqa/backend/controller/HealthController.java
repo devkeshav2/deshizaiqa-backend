@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthController {
     @GetMapping("/test")
     public String test() {
-        return "Backend is running";
+        return "Backend is running !!";
     }
 }
