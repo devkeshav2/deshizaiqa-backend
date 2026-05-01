@@ -24,5 +24,8 @@ public class Feedback {
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
+    private String username;
+    private String userphone;
+
     // getters & setters
 }
