@@ -18,4 +18,10 @@ public class FeedbackController {
     public ResponseEntity<?> save(@RequestBody Feedback feedback){
         return ResponseEntity.ok(service.saveFeedback(feedback));
     }
+
+    @GetMapping
+    public ResponseEntity<?> findAll(){
+        return ResponseEntity.ok(service.findAll());
+
+    }
 }

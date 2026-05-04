@@ -35,4 +35,9 @@ public class ProductController {
         Optional<Product> product = productService.getProductById(id);
         return product.get();
     }
+
+    @PutMapping
+    public Product updateProduct(@RequestBody Product product) {
+        return productService.updateProduct(product);
+    }
 }

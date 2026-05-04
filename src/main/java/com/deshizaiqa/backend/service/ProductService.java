@@ -17,6 +17,9 @@ public class ProductService {
     }
 
     public Product addProduct(Product product) {
+        if(product !=null) {
+            product.setItemImage("no_image");
+        }
         return productRepository.save(product);
     }
 
@@ -26,5 +29,9 @@ public class ProductService {
 
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
+    }
+
+    public Product updateProduct(Product product) {
+        return productRepository.save(product);
     }
 }
