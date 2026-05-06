@@ -3,6 +3,8 @@ package com.deshizaiqa.backend.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "products")
 @Data
@@ -22,4 +24,7 @@ public class Product {
     private String description;
     @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
     private Boolean enabled;
+    private String tag;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 }

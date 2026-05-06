@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -29,10 +30,12 @@ public class UserController {
             if (user.getUserName() != null) {
                 existingUser.setUserName(user.getUserName());
                 existingUser.setRole("CUSTOMER");
+                existingUser.setCreatedAt(LocalDateTime.now());
                 userRepository.save(existingUser);
             }
             return ResponseEntity.ok(existingUser);
         }else{
+            user.setCreatedAt(LocalDateTime.now());
             user.setRole("CUSTOMER");
             return ResponseEntity.ok(userService.save(user));
         }

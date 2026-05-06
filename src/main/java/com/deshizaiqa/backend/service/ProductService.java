@@ -4,6 +4,7 @@ import com.deshizaiqa.backend.entity.Product;
 import com.deshizaiqa.backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +18,8 @@ public class ProductService {
     }
 
     public Product addProduct(Product product) {
-        if(product !=null) {
-            product.setItemImage("no_image");
-        }
+        product.setItemImage("no_image");
+        product.setCreatedDate(LocalDateTime.now());
         return productRepository.save(product);
     }
 
@@ -32,6 +32,17 @@ public class ProductService {
     }
 
     public Product updateProduct(Product product) {
-        return productRepository.save(product);
+
+        Product existingProduct = productRepository.findById(product.getId())
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        existingProduct.setName(product.getName());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setType(product.getType());
+        existingProduct.setTag(product.getTag());
+        existingProduct.setEnabled(product.getEnabled());
+        existingProduct.setUpdatedDate(LocalDateTime.now());
+
+        return productRepository.save(existingProduct);
     }
 }
